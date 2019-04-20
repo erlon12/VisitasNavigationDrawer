@@ -25,7 +25,7 @@ public class dbTabelaEstabelecimento extends SQLiteOpenHelper {
         String sql = "create table if not exists estabelecimento(" +
                 "_id integer primary key autoincrement, " +
                 "numero integer, " +
-                "cnpj integer, "+
+                "cnpj text, "+
                 "razao text, " +
                 "cep text, "+
                 "cidade text);";

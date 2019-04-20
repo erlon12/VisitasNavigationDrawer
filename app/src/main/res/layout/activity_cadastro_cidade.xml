@@ -7,6 +7,7 @@
     android:background="#898989"
     tools:context=".Activitys.CadastroCidade">
 
+
     <EditText
         android:id="@+id/edt_uf"
         android:layout_width="397dp"

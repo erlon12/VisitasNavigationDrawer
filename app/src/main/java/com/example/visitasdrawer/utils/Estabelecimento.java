@@ -2,13 +2,13 @@ package com.example.visitasdrawer.utils;
 
 public class Estabelecimento {
 
-    private int id, numero, cnpj;
-    private String razao, cep,cidade;
+    private int id, numero;
+    private String razao, cep,cidade,cnpj;
 
     public Estabelecimento() {
     }
 
-    public Estabelecimento(int id, int numero, int cnpj, String razao, String cep, String cidade) {
+    public Estabelecimento(int id, int numero, String cnpj, String razao, String cep, String cidade) {
         this.id = id;
         this.numero = numero;
         this.cnpj = cnpj;
@@ -33,11 +33,11 @@ public class Estabelecimento {
         this.numero = numero;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

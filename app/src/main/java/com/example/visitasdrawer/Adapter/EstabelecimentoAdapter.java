@@ -15,6 +15,7 @@ import java.util.List;
 public class EstabelecimentoAdapter extends RecyclerView.Adapter<EstabelecimentoAdapter.ViewHolderEstabelecimento> {
 
 
+
     private List<Estabelecimento> dados;
 
 
@@ -47,9 +48,11 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
 
             Estabelecimento e = dados.get(position);
 
-            // int n = Integer.parseInt(e.getCnpj());
+          // int n = Integer.parseInt(e.getCnpj());
             holder.txtCidade.setText(e.getCidade());
             holder.txtEstabelecimento.setText(e.getRazao());
+            holder.txtCnpj.setText(e.getCnpj());
+
         }
     }
 

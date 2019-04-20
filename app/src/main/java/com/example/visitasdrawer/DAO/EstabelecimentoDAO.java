@@ -70,7 +70,7 @@ public class EstabelecimentoDAO {
         while(cursor.moveToNext()==true){
             int id = cursor.getInt(cursor.getColumnIndex("_id"));
             int numero = cursor.getInt(cursor.getColumnIndex("numero"));
-            int cnpj = cursor.getInt(cursor.getColumnIndex("cnpj"));
+            String cnpj = cursor.getString(cursor.getColumnIndex("cnpj"));
             String razao = cursor.getString(cursor.getColumnIndex("razao"));
             String cep = cursor.getString(cursor.getColumnIndex("cep"));
             String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
@@ -88,4 +88,5 @@ public class EstabelecimentoDAO {
         cursor.close();
         return esta;
     }
+
 }

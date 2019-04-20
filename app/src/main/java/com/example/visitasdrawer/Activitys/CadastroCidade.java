@@ -19,6 +19,11 @@ public class CadastroCidade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_cidade);
 
+       
+
+
+
+
 
         edt_nome = (EditText)findViewById(R.id.edt_nome);
         edt_uf = (EditText)findViewById(R.id.edt_uf);
