@@ -82,7 +82,7 @@ public class FragCidade extends Fragment {
 
         List<Cidade> c = dao.retornarTodos();
 
-        recyclerView.setAdapter(new CidadeAdapter(c));
+        recyclerView.setAdapter(new CidadeAdapter(c,getContext()));
 
     }
 

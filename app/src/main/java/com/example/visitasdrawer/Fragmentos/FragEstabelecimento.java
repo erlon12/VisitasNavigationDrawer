@@ -81,7 +81,7 @@ public class FragEstabelecimento extends Fragment {
 
         List<Estabelecimento> e = dao.retornarTodos();
 
-        recyclerView.setAdapter(new EstabelecimentoAdapter(e));
+        recyclerView.setAdapter(new EstabelecimentoAdapter(e,getContext()));
 
     }
 }

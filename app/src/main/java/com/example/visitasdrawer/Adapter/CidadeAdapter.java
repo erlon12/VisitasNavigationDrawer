@@ -1,11 +1,17 @@
 package com.example.visitasdrawer.Adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.visitasdrawer.R;
@@ -16,10 +22,12 @@ import java.util.List;
 public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolderCidade> {
 
     private List<Cidade> dados;
+    private final Context context;
 
-    public CidadeAdapter(List<Cidade> dados){
+    public CidadeAdapter(List<Cidade> dados,Context context){
 
         this.dados = dados;
+        this.context =context;
 
     }
 
@@ -32,7 +40,7 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
         View view = layoutInflater.inflate(R.layout.linha_cidade, parent, false);
 
 
-        ViewHolderCidade holderVisitas = new ViewHolderCidade(view);
+        ViewHolderCidade holderVisitas = new ViewHolderCidade(view,context);
 
         return holderVisitas;
     }
@@ -43,10 +51,11 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
 
         if((dados!= null) && (dados.size()>0)) {
 
-            Cidade e = dados.get(position);
+            Cidade c = dados.get(position);
 
             // int n = Integer.parseInt(e.getCnpj());
-            holder.txtCidade.setText(e.getNome());
+            holder.txtCidade.setText(c.getNome());
+            holder.txtUf.setText(c.getUf());
 
         }
     }
@@ -62,16 +71,47 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
 
 
         public TextView txtCidade;
-        public TextView txtCnpj;
-        public TextView txtEstabelecimento;
+        public TextView txtUf;
+        public String nomecidade;
 
-        public ViewHolderCidade(View itemView) {
+
+
+        public ViewHolderCidade(View itemView, final Context context) {
             super(itemView);
 
             txtCidade = itemView.findViewById(R.id.txt_cidade);
-            txtCnpj = itemView.findViewById(R.id.txt_cnpj);
-            txtEstabelecimento = itemView.findViewById(R.id.txt_razao);
+            txtUf = itemView.findViewById(R.id.txt_uf);
+
+
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+
+                    PopupMenu popup = new PopupMenu(context,view);
+                    MenuInflater inflater = popup.getMenuInflater();
+
+                    Cidade c = dados.get(getLayoutPosition());
+                    Log.e("EstabeAdapter", "Nome: " + c.getNome());
+
+
+                    Toast.makeText(context,"Nome"+nomecidade,Toast.LENGTH_SHORT).show();
+
+
+                    return false;
+                }
+            });
+
+
+
 
         }
     }
-}
+
+
+
+    }
+
+
+
+

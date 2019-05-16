@@ -79,41 +79,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_uf" />
 
+    <EditText
+        android:id="@+id/edt_cidade"
+        android:layout_width="294dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edt_round"
+        android:ems="10"
+        android:hint="  cidade"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_cep" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/edt_round"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <fr.ganfra.materialspinner.MaterialSpinner
-        android:id="@+id/id_spinner"
-        android:layout_width="381dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:background="#FFFF"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="284dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cep"
-        app:ms_arrowColor="#0000FF"
-        app:ms_arrowSize="17dp"
-        app:ms_enableErrorLabel="false"
-        app:ms_enableFloatingLabel="false"
-        app:ms_floatingLabelColor="#FFFF"
-        app:ms_hint="Selecione a cidade"
-        app:ms_multiline="true" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_cidade" />
+
+    <Button
+        android:id="@+id/btn_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_cidade"
+        app:layout_constraintTop_toBottomOf="@+id/edt_cep" />
 
 
 </android.support.constraint.ConstraintLayout>

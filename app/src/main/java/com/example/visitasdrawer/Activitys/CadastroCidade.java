@@ -19,11 +19,6 @@ public class CadastroCidade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_cidade);
 
-       
-
-
-
-
 
         edt_nome = (EditText)findViewById(R.id.edt_nome);
         edt_uf = (EditText)findViewById(R.id.edt_uf);
@@ -34,16 +29,52 @@ public class CadastroCidade extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                CidadeDAO dao = new CidadeDAO(CadastroCidade.this);
+                if(Validar()){
 
-                Cidade c = new Cidade();
-                c.setNome(edt_nome.getText().toString());
-                c.setUf(edt_uf.getText().toString());
+                    Salvar();
+                }
 
-
-                dao.save(c);
-                finish();
             }
         });
+    }
+
+
+
+    public void Salvar(){
+
+        CidadeDAO dao = new CidadeDAO(CadastroCidade.this);
+
+        Cidade c = new Cidade();
+        c.setNome(edt_nome.getText().toString());
+        c.setUf(edt_uf.getText().toString());
+
+
+        dao.save(c);
+        finish();
+    }
+
+    public boolean Validar(){
+
+
+        String nome = edt_nome.getText().toString();
+        String uf = edt_uf.getText().toString();
+        boolean validar = false;
+
+
+
+
+        if(nome.equals("")){
+            edt_nome.setError("Campo Obrigatorio");
+
+        }else
+        if(uf.equals("")){
+            edt_uf.setError("Campo Obrigatorio");
+            validar =false;
+        }else{
+            validar = true;
+        }
+
+
+        return validar;
     }
 }

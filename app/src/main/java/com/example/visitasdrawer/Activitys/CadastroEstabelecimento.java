@@ -1,9 +1,14 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.visitasdrawer.Adapter.CidadeAdapter;
 import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.DAO.EstabelecimentoDAO;
 import com.example.visitasdrawer.R;
@@ -21,12 +27,12 @@ import com.example.visitasdrawer.utils.Estabelecimento;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CadastroEstabelecimento extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CadastroEstabelecimento extends AppCompatActivity  {
 
-    EditText edt_numero, edt_cnpj, edt_razao, edt_cep, edt_idcity;
-    Button btn_salvar;
+    EditText edt_numero, edt_cnpj, edt_razao, edt_cep, edt_cidade;
+    Button btn_salvar,btn_select;
     Spinner spiner;
-    String cidade;
+    String cidade="cidade1";
 
 
     @Override
@@ -43,40 +49,21 @@ public class CadastroEstabelecimento extends AppCompatActivity implements Adapte
 
         edt_cep = (EditText) findViewById(R.id.edt_cep);
 
-        spiner = (Spinner) findViewById(R.id.id_spinner);
-
+        edt_cidade = (EditText)findViewById(R.id.edt_cidade);
+        btn_select = (Button)findViewById(R.id.btn_select);
         btn_salvar = (Button) findViewById(R.id.button2);
 
 
-        CidadeDAO cdao = new CidadeDAO(CadastroEstabelecimento.this);
 
-        List<Cidade> c = cdao.retornarTodos();
-
-        ArrayList<String> nomesCidades = new ArrayList<String>();
-
-        spiner.getBackground().setColorFilter(Color.parseColor("#FF0000"), PorterDuff.Mode.SRC_ATOP);
+        edt_cidade.setEnabled(false);
 
 
-        for (int i = 0; i < c.size(); i++) {
-
-            Cidade cidade = new Cidade();
-
-            cidade.setId(c.get(i).getId());
-            cidade.setNome(c.get(i).getNome());
-            cidade.setUf(c.get(i).getUf());
-
-            nomesCidades.add(c.get(i).getNome());
-        }
-
-
-        ArrayAdapter<String> adpter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nomesCidades);
-
-        adpter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-
-
-        spiner.setAdapter(adpter);
-
-        spiner.setOnItemSelectedListener(this);
+        btn_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                open_dialog();
+            }
+        });
 
         btn_salvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,23 +77,16 @@ public class CadastroEstabelecimento extends AppCompatActivity implements Adapte
         });
 
 
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-
-        String itenSelecionado = adapterView.getItemAtPosition(position).toString();
-        cidade = itenSelecionado;
 
 
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
 
-    }
 
-    public void Salvar() {
+
+
+
+   public void Salvar() {
 
 
         EstabelecimentoDAO dao = new EstabelecimentoDAO(CadastroEstabelecimento.this);
@@ -169,4 +149,44 @@ public class CadastroEstabelecimento extends AppCompatActivity implements Adapte
 
             return validar;
         }
+    private void open_dialog(){
+
+        RecyclerView lista = new RecyclerView(this);
+
+
+        CidadeDAO dao = new CidadeDAO(this);
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        lista.setLayoutManager(linearLayoutManager);
+
+
+        List<Cidade> c = dao.retornarTodos();
+
+
+        lista.setAdapter(new CidadeAdapter(c,this));
+
+
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setCancelable(true);
+        alert.setTitle("Escolha uma cidade");
+        alert.setView(lista);
+
+        final AlertDialog dialog = alert.create();
+        dialog.show();
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 }

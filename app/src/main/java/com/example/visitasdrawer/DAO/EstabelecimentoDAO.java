@@ -19,6 +19,8 @@ public class EstabelecimentoDAO {
     private SQLiteDatabase db;
     private dbTabelaEstabelecimento DbEstabelecimento;
 
+    String nomeCidade;
+
     public EstabelecimentoDAO(Context context){
 
         DbEstabelecimento = new dbTabelaEstabelecimento(context);
@@ -87,6 +89,30 @@ public class EstabelecimentoDAO {
         }
         cursor.close();
         return esta;
+    }
+    public void delete(int id)
+    {
+        String[] args = {String.valueOf(id)};
+
+        try {
+            db = DbEstabelecimento.getWritableDatabase();
+            db.delete("estabelecimento", "_id=?", args);
+            db.close();
+        }catch(SQLiteException e){
+            Log.e("EstabeleicmentoDAO", "Erro ao deletar Estabelecimento: " + e.getMessage());
+        }
+
+    }
+
+    public void setNomeCidade(String nome){
+
+        this.nomeCidade = nome;
+
+    }
+
+    public String getNomeCidade(){
+
+        return this.nomeCidade;
     }
 
 }
