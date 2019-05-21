@@ -31,7 +31,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
 
     private List<Estabelecimento> dados;
     private final Context context;
-
+    int po;
 
 
     public EstabelecimentoAdapter(List<Estabelecimento> dados,Context context){
@@ -69,6 +69,12 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
             holder.txtEstabelecimento.setText(e.getRazao());
             holder.txtCnpj.setText(e.getCnpj());
 
+
+
+
+
+
+
         }
     }
 
@@ -86,7 +92,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         public TextView txtCnpj;
         public TextView txtEstabelecimento;
 
-        public ViewHolderEstabelecimento(View itemView, final Context context) {
+        public ViewHolderEstabelecimento(final View itemView, final Context context) {
             super(itemView);
 
 
@@ -119,6 +125,10 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                         public void onClick(DialogInterface dialog, int which) {
                             EstabelecimentoDAO dao = new EstabelecimentoDAO(context);
                             dao.delete(id);
+
+                           // EstabelecimentoAdapter.this.notifyItemRemoved(po);
+
+
                         }
                     });
 
@@ -132,6 +142,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                     alert = builder.create();
 
                     alert.show();
+
                     return true;
                 }
             });

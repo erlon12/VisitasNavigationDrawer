@@ -1,5 +1,6 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.example.visitasdrawer.utils.Cidade;
 
 public class CadastroCidade extends AppCompatActivity {
 
-    EditText edt_nome, edt_uf;
+    TextInputLayout edt_nome, edt_uf;
     Button btn_salvar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +21,8 @@ public class CadastroCidade extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_cidade);
 
 
-        edt_nome = (EditText)findViewById(R.id.edt_nome);
-        edt_uf = (EditText)findViewById(R.id.edt_uf);
+        edt_nome = findViewById(R.id.edt_nome);
+        edt_uf = findViewById(R.id.edt_uf);
         btn_salvar =(Button)findViewById(R.id.btn);
 
 
@@ -45,8 +46,8 @@ public class CadastroCidade extends AppCompatActivity {
         CidadeDAO dao = new CidadeDAO(CadastroCidade.this);
 
         Cidade c = new Cidade();
-        c.setNome(edt_nome.getText().toString());
-        c.setUf(edt_uf.getText().toString());
+        c.setNome(edt_nome.getEditText().getText().toString());
+        c.setUf(edt_uf.getEditText().getText().toString());
 
 
         dao.save(c);
@@ -56,18 +57,18 @@ public class CadastroCidade extends AppCompatActivity {
     public boolean Validar(){
 
 
-        String nome = edt_nome.getText().toString();
-        String uf = edt_uf.getText().toString();
+        String nome = edt_nome.getEditText().getText().toString();
+        String uf = edt_uf.getEditText().getText().toString();
         boolean validar = false;
 
 
 
 
-        if(nome.equals("")){
+        if(nome.isEmpty()){
             edt_nome.setError("Campo Obrigatorio");
 
         }else
-        if(uf.equals("")){
+        if(uf.isEmpty()){
             edt_uf.setError("Campo Obrigatorio");
             validar =false;
         }else{

@@ -23,6 +23,7 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
 
     private List<Cidade> dados;
     private final Context context;
+    private View.OnClickListener mOnItemClickListener;
 
     public CidadeAdapter(List<Cidade> dados,Context context){
 
@@ -65,6 +66,10 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
         return dados.size();
     }
 
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        mOnItemClickListener = itemClickListener;
+    }
+
 
 
     public class ViewHolderCidade extends RecyclerView.ViewHolder{
@@ -84,25 +89,8 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
 
 
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-
-                    PopupMenu popup = new PopupMenu(context,view);
-                    MenuInflater inflater = popup.getMenuInflater();
-
-                    Cidade c = dados.get(getLayoutPosition());
-                    Log.e("EstabeAdapter", "Nome: " + c.getNome());
-
-
-                    Toast.makeText(context,"Nome"+nomecidade,Toast.LENGTH_SHORT).show();
-
-
-                    return false;
-                }
-            });
-
-
+            itemView.setTag(this);
+            itemView.setOnClickListener(mOnItemClickListener);
 
 
         }

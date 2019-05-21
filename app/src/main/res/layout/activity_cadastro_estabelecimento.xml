@@ -4,121 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#898989"
+    android:background="#FFFF"
     tools:context=".Activitys.CadastroEstabelecimento">
 
 
-
-    <EditText
-        android:id="@+id/edt_uf"
-        android:layout_width="397dp"
-        android:layout_height="30dp"
-
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edt_numero"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="382dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/edt_round"
-        android:ems="10"
-        android:hint="    Numero"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numero" />
 
-    <EditText
-        android:id="@+id/edt_nome"
-        android:layout_width="397dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/edt_round"
-        android:ems="10"
-        android:hint="  Razão"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cnpj" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edt_cep"
-        android:layout_width="397dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/edt_round"
-        android:ems="10"
-        android:hint="  Cep"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
-
-    <EditText
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/edt_cnpj"
-        android:layout_width="397dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="388dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/edt_round"
-        android:ems="10"
-        android:hint="  Cnpj"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_uf" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_numero">
 
-    <EditText
-        android:id="@+id/edt_cidade"
-        android:layout_width="294dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edt_round"
-        android:ems="10"
-        android:hint="  cidade"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cnpj" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/edt_razao"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="391dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cep" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_cnpj">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Razão" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/edt_cep"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="387dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_razao">
+
+        <android.support.design.widget.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="Cep" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edt_cidade"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="255dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_cep">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="253dp"
+            android:layout_height="51dp"
+            android:hint="Cidade" />
+
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_cadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/edt_round"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cidade" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.567" />
 
     <Button
         android:id="@+id/btn_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:text="Select"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edt_cidade"
         app:layout_constraintTop_toBottomOf="@+id/edt_cep" />
 
 
