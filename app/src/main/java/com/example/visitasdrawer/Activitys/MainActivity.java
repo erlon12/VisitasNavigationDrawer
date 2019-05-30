@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.visitasdrawer.Fragmentos.FragAutos;
 import com.example.visitasdrawer.Fragmentos.FragCidade;
 import com.example.visitasdrawer.Fragmentos.FragEstabelecimento;
 import com.example.visitasdrawer.R;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
 
@@ -90,8 +90,10 @@ public class MainActivity extends AppCompatActivity
             FragEstabelecimento fragEstabelecimento = new FragEstabelecimento();
             getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragment,fragEstabelecimento).commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_auto) {
 
+            FragAutos fragAutos = new FragAutos();
+            getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragment,fragAutos).commit();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

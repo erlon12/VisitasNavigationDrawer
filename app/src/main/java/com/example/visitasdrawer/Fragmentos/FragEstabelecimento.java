@@ -34,6 +34,22 @@ public class FragEstabelecimento extends Fragment {
         // Required empty public constructor
     }
 
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO: Step 4 of 4: Finally call getTag() on the view.
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            // viewHolder.getItemId();
+            // viewHolder.getItemViewType();
+            // viewHolder.itemView;
+           
+
+
+
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +98,10 @@ public class FragEstabelecimento extends Fragment {
         List<Estabelecimento> e = dao.retornarTodos();
 
         recyclerView.setAdapter(new EstabelecimentoAdapter(e,getContext()));
+
+        EstabelecimentoAdapter ee = new EstabelecimentoAdapter(e,getContext());
+
+
 
     }
 }

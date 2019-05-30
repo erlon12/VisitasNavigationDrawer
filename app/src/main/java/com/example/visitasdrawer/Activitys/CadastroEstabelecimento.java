@@ -28,36 +28,19 @@ import java.util.List;
 
 public class CadastroEstabelecimento extends AppCompatActivity  {
 
-    // recyclerview =(RecyclerView)findViewById(R.id.rc_cidade);
+
 
 
 
     Button btn_salvar,btn_cidades;
 
     TextInputLayout edt_numero,edt_cnpj, edt_razao, edt_cep,edt_cidade;
-    Spinner spiner;
-    String cidade;
+
     ArrayList<Cidade> cidadesss;
 
 
 
-    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //TODO: Step 4 of 4: Finally call getTag() on the view.
-            // This viewHolder will have all required values.
-            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-            int position = viewHolder.getAdapterPosition();
-            // viewHolder.getItemId();
-            // viewHolder.getItemViewType();
-            // viewHolder.itemView;
-            Cidade c = cidadesss.get(position);
-          //  edt_cidade.getEditText().setText(c.getNome());
 
-
-
-        }
-    };
 
 
 
@@ -177,22 +160,6 @@ public class CadastroEstabelecimento extends AppCompatActivity  {
         return validar;
     }
 
-    private void readDatabase() {
-
-
-        //EstabelecimentoDAO dao = new EstabelecimentoDAO(this);
-
-
-        //  LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
-        // recyclerview.setLayoutManager(linearLayoutManager);
-
-
-        //List<Estabelecimento> e = dao.retornarTodos();
-
-        //  recyclerview.setAdapter(new EstabelecimentoAdapter(e));
-
-    }
 
     private void open_dialog(){
         CidadeDAO cdao = new CidadeDAO(CadastroEstabelecimento.this);

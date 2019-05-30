@@ -31,6 +31,8 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
 
     private List<Estabelecimento> dados;
     private final Context context;
+    private View.OnClickListener mOnItemClickListener;
+
     int po;
 
 
@@ -64,7 +66,10 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
 
             Estabelecimento e = dados.get(position);
 
+            po = position;
+
           // int n = Integer.parseInt(e.getCnpj());
+
 
             holder.txtEstabelecimento.setText(e.getRazao());
             holder.txtCnpj.setText(e.getCnpj());
@@ -81,6 +86,10 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
     @Override
     public int getItemCount() {
         return dados.size();
+    }
+
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        mOnItemClickListener = itemClickListener;
     }
 
 
@@ -108,6 +117,8 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                     MenuInflater inflater = popup.getMenuInflater();
 
                     final Estabelecimento e = dados.get(getLayoutPosition());
+
+
                     Toast.makeText(context,"ID: "+e.getId(),Toast.LENGTH_SHORT).show();
                     Log.e("EstabeAdapter", "Nome: " + e.getRazao());
 
@@ -124,9 +135,13 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             EstabelecimentoDAO dao = new EstabelecimentoDAO(context);
+
                             dao.delete(id);
 
-                           // EstabelecimentoAdapter.this.notifyItemRemoved(po);
+
+                                EstabelecimentoAdapter.this.notifyItemRemoved(po);
+
+
 
 
                         }

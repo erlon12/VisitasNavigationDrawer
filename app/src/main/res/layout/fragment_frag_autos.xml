@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragmentos.FragAutos">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_autos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_flu_autos"
+        android:layout_width="244dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="496dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@android:drawable/ic_input_add"
+
+        />
+</FrameLayout>

@@ -41,19 +41,7 @@ public class CidadeDAO  {
         }
     }
 
-    public Cursor listCursor(){
 
-        Cursor cursor = null;
-        db = dbTabelaCidade.getReadableDatabase();
-
-        try {
-            cursor = db.query("cidade", null, null, null, null, null, null);
-        }catch(SQLiteException e){
-            Log.e("CidadeDAO", "Erro ao listar Cidades: " + e.getMessage());
-        }
-
-        return cursor;
-    }
 
     public List<Cidade> retornarTodos(){
 

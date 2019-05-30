@@ -3,15 +3,10 @@ package com.example.visitasdrawer.Adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.visitasdrawer.R;
@@ -84,8 +79,8 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
         public ViewHolderCidade(View itemView, final Context context) {
             super(itemView);
 
-            txtCidade = itemView.findViewById(R.id.txt_cidade);
-            txtUf = itemView.findViewById(R.id.txt_uf);
+            txtCidade = itemView.findViewById(R.id.txtEstabelecimento);
+            txtUf = itemView.findViewById(R.id.txtData);
 
 
 
