@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Cidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolderCidade> {
@@ -60,6 +61,16 @@ public class CidadeAdapter extends RecyclerView.Adapter<CidadeAdapter.ViewHolder
     public int getItemCount() {
         return dados.size();
     }
+    public void removeItem(int position) {
+        dados.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
+    public ArrayList<Cidade> getData() {
+        return (ArrayList<Cidade>) dados;
+    }
+
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;

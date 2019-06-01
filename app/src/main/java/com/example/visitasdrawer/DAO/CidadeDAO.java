@@ -69,4 +69,18 @@ public class CidadeDAO  {
         cursor.close();
         return esta;
     }
+
+    public void delete(int id)
+    {
+        String[] args = {String.valueOf(id)};
+
+        try {
+            db = dbTabelaCidade.getWritableDatabase();
+            db.delete("cidade", "_id=?", args);
+            db.close();
+        }catch(SQLiteException e){
+            Log.e("CidadeDAO", "Erro ao deletar Cidade: " + e.getMessage());
+        }
+
+    }
 }

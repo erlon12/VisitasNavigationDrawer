@@ -13,6 +13,7 @@ import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Auto;
 import com.example.visitasdrawer.utils.Cidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AutoAdapter  extends RecyclerView.Adapter<AutoAdapter.ViewHolderAuto>{
@@ -63,6 +64,16 @@ public class AutoAdapter  extends RecyclerView.Adapter<AutoAdapter.ViewHolderAut
     public int getItemCount() {
         return dados.size();
     }
+    public void removeItem(int position) {
+        dados.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
+    public ArrayList<Auto> getData() {
+        return (ArrayList<Auto>) dados;
+    }
+
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;

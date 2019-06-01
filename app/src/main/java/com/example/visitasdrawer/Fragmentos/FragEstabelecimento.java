@@ -2,11 +2,16 @@ package com.example.visitasdrawer.Fragmentos;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,7 @@ import com.example.visitasdrawer.Activitys.CadastroEstabelecimento;
 import com.example.visitasdrawer.Adapter.EstabelecimentoAdapter;
 import com.example.visitasdrawer.DAO.EstabelecimentoDAO;
 import com.example.visitasdrawer.R;
+import com.example.visitasdrawer.utils.DeleteCall;
 import com.example.visitasdrawer.utils.Estabelecimento;
 
 import java.util.List;
@@ -26,6 +32,8 @@ public class FragEstabelecimento extends Fragment {
 
      RecyclerView recyclerView;
      FloatingActionButton btn;
+     EstabelecimentoAdapter adapter;
+
 
     View vista;
 
@@ -62,6 +70,8 @@ public class FragEstabelecimento extends Fragment {
         recyclerView = (RecyclerView) vista.findViewById(R.id.recy_view);
         btn =(FloatingActionButton) vista.findViewById(R.id.btn_flutuante);
 
+        habilitarExclusaoLinha();
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +107,33 @@ public class FragEstabelecimento extends Fragment {
 
         List<Estabelecimento> e = dao.retornarTodos();
 
-        recyclerView.setAdapter(new EstabelecimentoAdapter(e,getContext()));
+        adapter=new EstabelecimentoAdapter(e,getContext());
 
-        EstabelecimentoAdapter ee = new EstabelecimentoAdapter(e,getContext());
+        recyclerView.setAdapter(adapter);
+
+
+    }
+    private void habilitarExclusaoLinha() {
+        DeleteCall swipeToDeleteCallback = new DeleteCall(getContext()) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+
+                final int position = viewHolder.getAdapterPosition();
+                final Estabelecimento item = adapter.getData().get(position);
 
 
 
+                 EstabelecimentoDAO estbDao = new EstabelecimentoDAO(getContext());
+                 estbDao.delete(item.getId());
+                adapter.removeItem(position);
+
+
+
+            }
+        };
+
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
     }
 }

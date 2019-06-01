@@ -84,4 +84,17 @@ public class AutoDAO {
 
         return listaAuto;
     }
+    public void delete(int id)
+    {
+        String[] args = {String.valueOf(id)};
+
+        try {
+            db = dbTabela.getWritableDatabase();
+            db.delete("auto", "_id=?", args);
+            db.close();
+        }catch(SQLiteException e){
+            Log.e("AutoDAO", "Erro ao deletar auto: " + e.getMessage());
+        }
+
+    }
 }

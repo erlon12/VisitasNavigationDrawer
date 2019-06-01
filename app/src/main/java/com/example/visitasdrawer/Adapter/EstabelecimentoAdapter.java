@@ -22,6 +22,7 @@ import com.example.visitasdrawer.DAO.EstabelecimentoDAO;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Estabelecimento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -87,6 +88,15 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
     public int getItemCount() {
         return dados.size();
     }
+    public void removeItem(int position) {
+        dados.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
+    public ArrayList<Estabelecimento> getData() {
+        return (ArrayList<Estabelecimento>) dados;
+    }
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
@@ -109,59 +119,6 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
             txtEstabelecimento = itemView.findViewById(R.id.txt_razao);
 
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-
-                    PopupMenu popup = new PopupMenu(context,view);
-                    MenuInflater inflater = popup.getMenuInflater();
-
-                    final Estabelecimento e = dados.get(getLayoutPosition());
-
-
-                    Toast.makeText(context,"ID: "+e.getId(),Toast.LENGTH_SHORT).show();
-                    Log.e("EstabeAdapter", "Nome: " + e.getRazao());
-
-                    AlertDialog alert;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-                    builder.setTitle("Excluir Estabelecimento!");
-
-                    builder.setMessage("Excluir Estabelecimento: "+e.getRazao());
-
-                    final int id = e.getId();
-
-                    builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            EstabelecimentoDAO dao = new EstabelecimentoDAO(context);
-
-                            dao.delete(id);
-
-
-                                EstabelecimentoAdapter.this.notifyItemRemoved(po);
-
-
-
-
-                        }
-                    });
-
-                    builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-
-                    alert = builder.create();
-
-                    alert.show();
-
-                    return true;
-                }
-            });
-
 
 
 
@@ -169,31 +126,5 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         }
     }
 
-    private void buildAlertDialog(){
 
-        AlertDialog alert;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle("Exemplo Titulo!");
-
-        builder.setMessage("Mensagem do Alert Dialog");
-
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Botão Ok", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Botão Cancel", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        alert = builder.create();
-
-        alert.show();
-    }
 }
