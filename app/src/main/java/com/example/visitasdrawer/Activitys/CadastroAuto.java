@@ -1,47 +1,61 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.visitasdrawer.DAO.AutoDAO;
-import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.DAO.EstabelecimentoDAO;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Auto;
-import com.example.visitasdrawer.utils.Cidade;
 import com.example.visitasdrawer.utils.Estabelecimento;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.joinersa.oooalertdialog.Animation;
+import br.com.joinersa.oooalertdialog.OnClickListener;
+import br.com.joinersa.oooalertdialog.OoOAlertDialog;
 
 public class CadastroAuto extends AppCompatActivity {
 
     TextInputLayout edt_data, edt_tipoAuto, edt_artigo, edt_recura_receber, edt_obs, edt_equipe, edt_estabelecimento;
 
+
+    String cnpj;
+
+
     ArrayList<Estabelecimento> estabelecimentos;
-    Button btn_inserir,btn_selectEstab;
+    Button btn_inserir,btn_selectEstab,btn_tipoAuto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_auto);
 
-        edt_data = findViewById(R.id.edt_data);
-        edt_artigo = findViewById(R.id.edt_artigo);
-        edt_equipe = findViewById(R.id.edt_equipe);
-        edt_estabelecimento = findViewById(R.id.edt_estab_auto);
-        edt_obs = findViewById(R.id.edt_obs);
-        edt_recura_receber = findViewById(R.id.edt_recusa);
-        edt_tipoAuto = findViewById(R.id.edt_tipoauto);
-        btn_inserir = (Button)findViewById(R.id.btn_cadastro);
+        edt_data = findViewById(R.id.edt_data_alter);
+        edt_artigo = findViewById(R.id.edt_artigo_alter);
+        edt_equipe = findViewById(R.id.edt_equipe_alter);
+        edt_estabelecimento = findViewById(R.id.edt_estab_auto_alter);
+        edt_obs = findViewById(R.id.edt_obs_alter);
+        edt_recura_receber = findViewById(R.id.edt_recusa_alter);
+        edt_tipoAuto = findViewById(R.id.edt_tipoauto_alter);
+        btn_inserir = (Button)findViewById(R.id.btn_cadastro_alter);
+        btn_tipoAuto = (Button)findViewById(R.id.btn_cad_tipoauto_alter);
 
         btn_selectEstab = (Button)findViewById(R.id.btn_estabAuto);
+
+        edt_estabelecimento.setEnabled(false);
+        edt_tipoAuto.setEnabled(false);
+
 
 
         btn_selectEstab.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +75,12 @@ public class CadastroAuto extends AppCompatActivity {
                 }
             }
         });
+        btn_tipoAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_listTipoAuto();
+            }
+        });
     }
     public void Salvar(){
         Auto auto = new Auto();
@@ -73,9 +93,26 @@ public class CadastroAuto extends AppCompatActivity {
         auto.setArtigo(edt_artigo.getEditText().getText().toString());
         auto.setEstabelecimento(edt_estabelecimento.getEditText().getText().toString());
         auto.setEquipe(edt_equipe.getEditText().getText().toString());
+        auto.setCnpj(cnpj);
 
         dao.save(auto);
-        finish();
+        new OoOAlertDialog.Builder((Activity) CadastroAuto.this)
+
+
+                .setTitle("Aviso!!")
+                .setMessage("Auto Cadastrado com Sucesso! ")
+
+                .setAnimation(Animation.POP)
+
+                .setPositiveButton("Fechar", new OnClickListener() {
+                    @Override
+                    public void onClick() {
+
+                        finish();
+                    }
+                })
+                .build();
+
     }
    public boolean Validar(){
 
@@ -136,6 +173,7 @@ public class CadastroAuto extends AppCompatActivity {
         estabelecimentos = new ArrayList<>();
 
         final ArrayList<String> nomesEstab = new ArrayList<String>();
+        final ArrayList<String> cnpjts = new ArrayList<String>();
 
 
 
@@ -153,6 +191,9 @@ public class CadastroAuto extends AppCompatActivity {
 
             nomesEstab.add(estabelecimento.getRazao());
 
+
+
+            cnpjts.add(estabelecimento.getCnpj());
             estabelecimentos.add(estabelecimento);
         }
 
@@ -166,6 +207,10 @@ public class CadastroAuto extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 edt_estabelecimento.getEditText().setText(nomesEstab.get(i));
+                 cnpj = cnpjts.get(i);
+
+                Log.e("CadastroAuto", "CNPJ AUTO: " + cnpj);
+
                 dialogInterface.dismiss();
             }
         });
@@ -173,6 +218,36 @@ public class CadastroAuto extends AppCompatActivity {
 
         final AlertDialog dialog = alert.create();
         dialog.show();
+
+    }
+
+    private void dialog_listTipoAuto(){
+
+        final ArrayList<String> tipoDeAutos = new ArrayList<String>();
+        tipoDeAutos.add("Auto de Infração");
+        tipoDeAutos.add("Auto de Constatação");
+        tipoDeAutos.add("Auto de Apreensão");
+        tipoDeAutos.add("Nenhum");
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,tipoDeAutos);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Estabelecimentos Cadastrados");
+
+        alert.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                edt_tipoAuto.getEditText().setText(tipoDeAutos.get(i));
+
+                dialogInterface.dismiss();
+            }
+        });
+
+
+        final AlertDialog dialog = alert.create();
+        dialog.show();
+
 
     }
 }

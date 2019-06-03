@@ -1,5 +1,6 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,10 @@ import android.widget.Button;
 import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Cidade;
+
+import br.com.joinersa.oooalertdialog.Animation;
+import br.com.joinersa.oooalertdialog.OnClickListener;
+import br.com.joinersa.oooalertdialog.OoOAlertDialog;
 
 public class AlterarCidade extends AppCompatActivity {
 
@@ -84,12 +89,31 @@ public class AlterarCidade extends AppCompatActivity {
 
         Cidade c = new Cidade();
         c.setNome(alter_nome.getEditText().getText().toString());
-        c.setUf(alter_uf.getEditText().getText().toString());
+        String uf =alter_uf.getEditText().getText().toString();
+
+        c.setUf(uf.toUpperCase());
         c.setId(id);
 
 
         dao.update(c);
-        finish();
+
+        new OoOAlertDialog.Builder((Activity) AlterarCidade.this)
+
+
+                .setTitle("Aviso!!")
+                .setMessage("Cidade Alterada com Sucesso! ")
+
+                .setAnimation(Animation.POP)
+
+                .setPositiveButton("Fechar", new OnClickListener() {
+                    @Override
+                    public void onClick() {
+
+                        finish();
+                    }
+                })
+                .build();
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
@@ -20,6 +21,10 @@ import com.example.visitasdrawer.utils.Estabelecimento;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.joinersa.oooalertdialog.Animation;
+import br.com.joinersa.oooalertdialog.OnClickListener;
+import br.com.joinersa.oooalertdialog.OoOAlertDialog;
 
 public class AlterarEstabelecimento extends AppCompatActivity {
 
@@ -84,7 +89,23 @@ public class AlterarEstabelecimento extends AppCompatActivity {
 
                     estabelecimento.setId(id);
                     dao.update(estabelecimento);
-                    finish();
+
+                    new OoOAlertDialog.Builder((Activity) AlterarEstabelecimento.this)
+
+
+                            .setTitle("Aviso!!")
+                            .setMessage("Estabelecimento Alterado com Sucesso! ")
+
+                            .setAnimation(Animation.POP)
+
+                            .setPositiveButton("Fechar", new OnClickListener() {
+                                @Override
+                                public void onClick() {
+
+                                    finish();
+                                }
+                            })
+                            .build();
                 }
 
             }

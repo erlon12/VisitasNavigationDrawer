@@ -176,7 +176,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_obs_alter" />
 
     <Button
-        android:id="@+id/btn_estabAuto"
+        android:id="@+id/btn_estabAuto_alter"
         android:layout_width="94dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"

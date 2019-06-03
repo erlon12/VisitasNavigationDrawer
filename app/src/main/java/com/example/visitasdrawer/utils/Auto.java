@@ -3,12 +3,12 @@ package com.example.visitasdrawer.utils;
 public class Auto {
 
    int id;
-   String data, tipoAuto, artigo, recura_receber, obs, equipe, estabelecimento;
+   String data, tipoAuto, artigo, recura_receber, obs, equipe, estabelecimento,cnpj;
 
     public Auto() {
     }
 
-    public Auto(int id, String data, String tipoAuto, String artigo, String recura_receber, String obs, String equipe, String estabelecimento) {
+    public Auto(int id, String data, String tipoAuto, String artigo, String recura_receber, String obs, String equipe, String estabelecimento,String cnpj) {
         this.id = id;
         this.data = data;
         this.tipoAuto = tipoAuto;
@@ -17,6 +17,7 @@ public class Auto {
         this.obs = obs;
         this.equipe = equipe;
         this.estabelecimento = estabelecimento;
+        this.cnpj = cnpj;
     }
 
 
@@ -82,5 +83,13 @@ public class Auto {
 
     public void setEstabelecimento(String estabelecimento) {
         this.estabelecimento = estabelecimento;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 }

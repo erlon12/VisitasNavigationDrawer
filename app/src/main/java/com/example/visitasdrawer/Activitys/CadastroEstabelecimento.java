@@ -1,5 +1,6 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -18,6 +19,10 @@ import com.example.visitasdrawer.utils.Estabelecimento;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.joinersa.oooalertdialog.Animation;
+import br.com.joinersa.oooalertdialog.OnClickListener;
+import br.com.joinersa.oooalertdialog.OoOAlertDialog;
 
 public class CadastroEstabelecimento extends AppCompatActivity  {
 
@@ -103,8 +108,25 @@ public class CadastroEstabelecimento extends AppCompatActivity  {
         e.setRazao(edt_razao.getEditText().getText().toString());
         e.setCnpj(edt_cnpj.getEditText().getText().toString());
         e.setCidade(edt_cidade.getEditText().getText().toString());
+
         dao.save(e);
-        finish();
+
+        new OoOAlertDialog.Builder((Activity) CadastroEstabelecimento.this)
+
+
+                .setTitle("Aviso!!")
+                .setMessage("Estabelecimento Cadastrado com Sucesso! ")
+
+                .setAnimation(Animation.POP)
+
+                .setPositiveButton("Fechar", new OnClickListener() {
+                    @Override
+                    public void onClick() {
+
+                        finish();
+                    }
+                })
+                .build();
 
 
 

@@ -27,6 +27,7 @@ public class dbTabelaAuto extends SQLiteOpenHelper {
                 "obs text, " +
                 "equipe text, " +
                 "estabelecimento text, " +
+                "cnpj text, " +
                 "artigo text, " +
                 "data text, " +
                 "tipo_auto text);";

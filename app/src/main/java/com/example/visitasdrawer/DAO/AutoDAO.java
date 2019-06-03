@@ -11,6 +11,7 @@ import com.example.visitasdrawer.DB.dbTabelaAuto;
 import com.example.visitasdrawer.DB.dbTabelaCidade;
 import com.example.visitasdrawer.utils.Auto;
 import com.example.visitasdrawer.utils.Cidade;
+import com.example.visitasdrawer.utils.Estabelecimento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class AutoDAO {
         values.put("data", a.getData());
         values.put("recusa_receber", a.getRecura_receber());
         values.put("tipo_auto", a.getTipoAuto());
+        values.put("cnpj",a.getCnpj());
 
 
         try {
@@ -47,7 +49,7 @@ public class AutoDAO {
 
     public List<Auto> retornarTodos(){
 
-        String [] colunas = {"_id,recusa_receber,obs,equipe,estabelecimento,artigo,data,tipo_auto"};
+        String [] colunas = {"_id,recusa_receber,obs,equipe,estabelecimento,artigo,data,tipo_auto,cnpj"};
 
         ArrayList<Auto> listaAuto= new ArrayList<Auto>();
         Cursor cursor = null;
@@ -66,6 +68,7 @@ public class AutoDAO {
             String artigo = cursor.getString(cursor.getColumnIndex("artigo"));
             String data = cursor.getString(cursor.getColumnIndex("data"));
             String tipo_auto = cursor.getString(cursor.getColumnIndex("tipo_auto"));
+            String cnpj = cursor.getString(cursor.getColumnIndex("cnpj"));
 
             Auto a = new Auto();
 
@@ -77,6 +80,7 @@ public class AutoDAO {
             a.setObs(obs);
             a.setRecura_receber(recusa_receber);
             a.setTipoAuto(tipo_auto);
+            a.setCnpj(cnpj);
 
             listaAuto.add(a);
         }
@@ -94,6 +98,31 @@ public class AutoDAO {
             db.close();
         }catch(SQLiteException e){
             Log.e("AutoDAO", "Erro ao deletar auto: " + e.getMessage());
+        }
+
+    }
+    public void update(Auto a)
+    {
+        String[] args = {String.valueOf(a.getId())};
+
+        ContentValues values = new ContentValues();
+        values.put("estabelecimento", a.getEstabelecimento());
+        values.put("obs", a.getObs());
+        values.put("equipe", a.getEquipe());
+        values.put("artigo", a.getArtigo());
+        values.put("data", a.getData());
+        values.put("recusa_receber", a.getRecura_receber());
+        values.put("tipo_auto", a.getTipoAuto());
+        values.put("cnpj",a.getCnpj());
+
+
+        try {
+            db = dbTabela.getWritableDatabase();
+            db.update("auto",  values,"_id=?",args);
+            Log.e("AutoDAO", "chegou auto: ");
+            db.close();
+        } catch (SQLiteException ee) {
+            Log.e("AutoDAO", "Erro ao Alterar Auto: " + ee.getMessage());
         }
 
     }

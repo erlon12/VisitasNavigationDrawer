@@ -41,10 +41,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alter_numero">
 
-        <android.support.design.widget.TextInputEditText
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cnpj" />
+            android:hint="Cnpj"
+            app:mask="##.###.###/####-##"/>
+
 
     </android.support.design.widget.TextInputLayout>
 
@@ -82,12 +84,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alter_razao">
 
-        <android.support.design.widget.TextInputEditText
-
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:hint="Cep" />
+            android:hint="Cep"
+            app:mask="##.###-###"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -113,26 +114,34 @@
 
     <Button
         android:id="@+id/btn_alterar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="111dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
-        android:text="Button"
+        android:background="@drawable/edt_round"
+        android:text="Cadastrar"
+
+        android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintTop_toBottomOf="@+id/alter_cidade"
+        app:layout_constraintVertical_bias="0.822" />
 
     <Button
         android:id="@+id/btn_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+
         android:layout_marginEnd="24dp"
+
+        android:textColor="#ffff"
+        android:background="@drawable/edt_round"
         android:text="Select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alter_cep" />

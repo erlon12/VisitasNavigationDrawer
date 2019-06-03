@@ -1,14 +1,21 @@
 package com.example.visitasdrawer.Activitys;
 
+import android.app.Activity;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Cidade;
+
+import br.com.joinersa.oooalertdialog.Animation;
+import br.com.joinersa.oooalertdialog.OnClickListener;
+import br.com.joinersa.oooalertdialog.OoOAlertDialog;
 
 public class CadastroCidade extends AppCompatActivity {
 
@@ -46,11 +53,29 @@ public class CadastroCidade extends AppCompatActivity {
 
         Cidade c = new Cidade();
         c.setNome(edt_nome.getEditText().getText().toString());
-        c.setUf(edt_uf.getEditText().getText().toString());
+        String uf =edt_uf.getEditText().getText().toString();
+
+        c.setUf(uf.toUpperCase());
 
 
         dao.save(c);
-        finish();
+        new OoOAlertDialog.Builder((Activity) CadastroCidade.this)
+
+
+                .setTitle("Aviso!!")
+                .setMessage("Cidade Cadastrada com Sucesso! ")
+
+                .setAnimation(Animation.POP)
+
+                .setPositiveButton("Fechar", new OnClickListener() {
+                    @Override
+                    public void onClick() {
+
+                        finish();
+                    }
+                })
+                .build();
+
     }
 
     public boolean Validar(){
