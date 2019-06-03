@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.visitasdrawer.DB.dbTabelaCidade;
 import com.example.visitasdrawer.utils.Cidade;
+import com.example.visitasdrawer.utils.Estabelecimento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,25 @@ public class CidadeDAO  {
             db.delete("cidade", "_id=?", args);
             db.close();
         }catch(SQLiteException e){
-            Log.e("CidadeDAO", "Erro ao deletar Cidade: " + e.getMessage());
+        Log.e("CidadeDAO", "Erro ao deletar Cidade: " + e.getMessage());
+    }
+
+    }
+    public void update(Cidade cidade)
+    {
+        String[] args = {String.valueOf(cidade.getId())};
+
+        ContentValues v = new ContentValues();
+        v.put("uf", cidade.getUf());
+        v.put("nome", cidade.getNome());
+
+        try {
+            db = dbTabelaCidade.getWritableDatabase();
+            db.update("cidade", v, "_id=?", args);
+
+            db.close();
+        }catch(SQLiteException e){
+            Log.e("CidadeDAO", "Erro ao alterar Cidade: " + e.getMessage());
         }
 
     }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.R;
@@ -21,8 +20,8 @@ public class CadastroCidade extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_cidade);
 
 
-        edt_nome = findViewById(R.id.edt_nome);
-        edt_uf = findViewById(R.id.edt_uf);
+        edt_nome = findViewById(R.id.edt_alter_nome_cidade);
+        edt_uf = findViewById(R.id.edt_alter_uf);
         btn_salvar =(Button)findViewById(R.id.btn);
 
 

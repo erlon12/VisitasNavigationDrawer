@@ -19,7 +19,7 @@ public class EstabelecimentoDAO {
     private SQLiteDatabase db;
     private dbTabelaEstabelecimento DbEstabelecimento;
 
-    String nomeCidade;
+
 
     public EstabelecimentoDAO(Context context){
 
@@ -45,19 +45,7 @@ public class EstabelecimentoDAO {
         }
     }
 
-    public Cursor listCursor(){
 
-        Cursor cursor = null;
-        db = DbEstabelecimento.getReadableDatabase();
-
-        try {
-            cursor = db.query("estabelecimento", null, null, null, null, null, null);
-        }catch(SQLiteException e){
-            Log.e("estabelecimentoDAO", "Erro ao listar Estabelecimento: " + e.getMessage());
-        }
-
-        return cursor;
-    }
 
     public List<Estabelecimento> retornarTodos(){
 
@@ -104,15 +92,26 @@ public class EstabelecimentoDAO {
 
     }
 
-    public void setNomeCidade(String nome){
+    public void update(Estabelecimento estabelecimento)
+    {
+        String[] args = {String.valueOf(estabelecimento.getId())};
 
-        this.nomeCidade = nome;
+        ContentValues v = new ContentValues();
+        v.put("numero", estabelecimento.getNumero());
+        v.put("cnpj", estabelecimento.getCnpj());
+        v.put("razao", estabelecimento.getRazao());
+        v.put("cep", estabelecimento.getCep());
+        v.put("cidade", estabelecimento.getCidade());
 
-    }
+        try {
+            db = DbEstabelecimento.getWritableDatabase();
+            db.update("estabelecimento", v, "_id=?", args);
+            Log.e("EstabelecimentoDAO", "eo: " );
+            db.close();
+        }catch(SQLiteException e){
+            Log.e("EstabelecimentoDAO", "Erro ao alterar Estabelecimento: " + e.getMessage());
+        }
 
-    public String getNomeCidade(){
-
-        return this.nomeCidade;
     }
 
 }

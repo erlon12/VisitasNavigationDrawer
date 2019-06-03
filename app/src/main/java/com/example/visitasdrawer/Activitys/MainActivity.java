@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
+        FragEstabelecimento fragEstabelecimento = new FragEstabelecimento();
+        getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragment,fragEstabelecimento).commit();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -41,6 +43,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     @Override

@@ -14,14 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.visitasdrawer.Activitys.CadastroAuto;
-import com.example.visitasdrawer.Activitys.CadastroCidade;
 import com.example.visitasdrawer.Adapter.AutoAdapter;
-import com.example.visitasdrawer.Adapter.CidadeAdapter;
 import com.example.visitasdrawer.DAO.AutoDAO;
-import com.example.visitasdrawer.DAO.CidadeDAO;
 import com.example.visitasdrawer.R;
 import com.example.visitasdrawer.utils.Auto;
-import com.example.visitasdrawer.utils.Cidade;
 import com.example.visitasdrawer.utils.DeleteCall;
 
 import java.util.List;

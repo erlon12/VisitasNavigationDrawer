@@ -1,10 +1,12 @@
 package com.example.visitasdrawer.Activitys;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,99 +21,80 @@ import com.example.visitasdrawer.utils.Estabelecimento;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CadastroEstabelecimento extends AppCompatActivity  {
-
-
-
-
-
-    Button btn_salvar,btn_cidades;
+public class AlterarEstabelecimento extends AppCompatActivity {
 
     TextInputLayout edt_numero,edt_cnpj, edt_razao, edt_cep,edt_cidade;
+    Button btn_alterar,btn_cidades;
 
     ArrayList<Cidade> cidadesss;
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_estabelecimento);
-
+        setContentView(R.layout.activity_alterar_estabelecimento);
 
         edt_numero = findViewById(R.id.alter_numero);
         edt_cnpj = findViewById(R.id.alter_cnpj);
-        edt_cep = findViewById(R.id.alter_cep);
         edt_razao = findViewById(R.id.alter_razao);
+        edt_cep = findViewById(R.id.alter_cep);
+        edt_cidade = findViewById(R.id.alter_cidade);
+        btn_alterar = (Button)findViewById(R.id.btn_alterar);
+        btn_cidades = (Button)findViewById(R.id.btn_alter_cidade);
 
-        edt_cidade=findViewById(R.id.alter_cidade);
+        Intent intent=getIntent();
 
-        btn_cidades =(Button)findViewById(R.id.btn_select);
-        btn_salvar = (Button) findViewById(R.id.btn_alterar);
+         String cnpj = intent.getStringExtra("ccnpj");
+        edt_cnpj.getEditText().setText(cnpj);
+         String razao =intent.getStringExtra("razao");
+        edt_razao.getEditText().setText(razao);
+         String cep = intent.getStringExtra("cep");
+        edt_cep.getEditText().setText(cep);
+         String cidade = intent.getStringExtra("cidade");
+        edt_cidade.getEditText().setText(cidade);
+         String numero = intent.getStringExtra("numero");
+        edt_numero.getEditText().setText(numero);
+
+
+          final int id = intent.getIntExtra("id",999999999);
 
 
 
-        edt_cidade.setEnabled(false);
+          edt_cidade.setEnabled(false);
 
 
 
-
-
-
-        btn_cidades.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                open_dialog();
-
-            }
-
-        });
-
-        btn_salvar.setOnClickListener(new View.OnClickListener() {
+          btn_cidades.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  open_dialog();
+              }
+          });
+        btn_alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if(Validar()){
-                    Salvar();
-                }
+                    EstabelecimentoDAO dao = new EstabelecimentoDAO(AlterarEstabelecimento.this);
+                    Estabelecimento estabelecimento = new Estabelecimento();
+                    estabelecimento.setCep(edt_cep.getEditText().getText().toString());
+                    estabelecimento.setRazao(edt_razao.getEditText().getText().toString());
+                    int numerooo = Integer.parseInt(edt_numero.getEditText().getText().toString());
+                    estabelecimento.setNumero(numerooo);
+                    estabelecimento.setCidade(edt_cidade.getEditText().getText().toString());
+                    estabelecimento.setCnpj(edt_cnpj.getEditText().getText().toString());
 
+                    estabelecimento.setId(id);
+                    dao.update(estabelecimento);
+                    finish();
+                }
 
             }
         });
 
 
 
-    }
-
-    public void Salvar() {
-
-
-        EstabelecimentoDAO dao = new EstabelecimentoDAO(CadastroEstabelecimento.this);
-
-        Estabelecimento e = new Estabelecimento();
-
-        int numero = Integer.parseInt(edt_numero.getEditText().getText().toString());
-
-
-        e.setCep(edt_cep.getEditText().getText().toString());
-        e.setNumero(numero);
-        e.setRazao(edt_razao.getEditText().getText().toString());
-        e.setCnpj(edt_cnpj.getEditText().getText().toString());
-        e.setCidade(edt_cidade.getEditText().getText().toString());
-        dao.save(e);
-        finish();
-
-
 
 
     }
-
-
     public boolean Validar(){
 
 
@@ -155,7 +138,7 @@ public class CadastroEstabelecimento extends AppCompatActivity  {
 
 
     private void open_dialog(){
-        CidadeDAO cdao = new CidadeDAO(CadastroEstabelecimento.this);
+        CidadeDAO cdao = new CidadeDAO(AlterarEstabelecimento.this);
         List<Cidade> c = cdao.retornarTodos();
 
         cidadesss = new ArrayList<>();
