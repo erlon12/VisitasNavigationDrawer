@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+        getSupportActionBar().setTitle("Visitas Fiscal");
 
         FragEstabelecimento fragEstabelecimento = new FragEstabelecimento();
         getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragment,fragEstabelecimento).commit();
