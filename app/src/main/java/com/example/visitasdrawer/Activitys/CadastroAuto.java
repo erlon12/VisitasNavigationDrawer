@@ -2,6 +2,7 @@ package com.example.visitasdrawer.Activitys;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -202,6 +203,15 @@ public class CadastroAuto extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Estabelecimentos Cadastrados");
 
+
+        alert.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(CadastroAuto.this, CadastroEstabelecimento.class);
+                startActivity(intent);
+            }
+        });
         alert.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

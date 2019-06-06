@@ -2,6 +2,7 @@ package com.example.visitasdrawer.Activitys;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -131,6 +132,8 @@ public class CadastroEstabelecimento extends AppCompatActivity  {
 
 
 
+
+
     }
 
 
@@ -205,6 +208,15 @@ public class CadastroEstabelecimento extends AppCompatActivity  {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Escolha uma cidade");
+
+        alert.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(CadastroEstabelecimento.this, CadastroCidade.class);
+                startActivity(intent);
+            }
+        });
 
 
 

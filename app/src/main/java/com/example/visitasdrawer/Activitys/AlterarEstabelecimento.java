@@ -189,6 +189,14 @@ public class AlterarEstabelecimento extends AppCompatActivity {
         alert.setTitle("Escolha uma cidade");
 
 
+        alert.setPositiveButton("Mais", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(AlterarEstabelecimento.this, CadastroCidade.class);
+                startActivity(intent);
+            }
+        });
 
         alert.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
             @Override
@@ -198,6 +206,7 @@ public class AlterarEstabelecimento extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         });
+
 
 
         final AlertDialog dialog = alert.create();

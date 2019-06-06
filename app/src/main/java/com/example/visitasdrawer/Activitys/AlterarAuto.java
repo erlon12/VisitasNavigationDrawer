@@ -227,6 +227,15 @@ public class AlterarAuto extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Estabelecimentos Cadastrados");
 
+        alert.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(AlterarAuto.this, CadastroEstabelecimento.class);
+                startActivity(intent);
+            }
+        });
+
         alert.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
